@@ -6,3 +6,10 @@
 .v-align{
   margin-top: 2em;
 }
+.list{
+  list-style: none;
+  font-size: 1rem;
+  margin-bottom: 1em !important;
+  border-bottom: #cccccc 1px solid;
+  padding: 1em;
+}

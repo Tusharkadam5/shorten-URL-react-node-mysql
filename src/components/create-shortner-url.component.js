@@ -24,7 +24,8 @@ export default class CreateShortenrUrl extends Component {
 
         // Setting up state
         this.state = {
-            fullurl: ''
+            fullurl: '',
+            data: []
         }
     }
 
@@ -50,7 +51,7 @@ export default class CreateShortenrUrl extends Component {
             fullurl: this.state.fullurl
         };
         // send date to backent using axios 
-        axios.post(`${domain.domainUrl}api/createurl`, urlObject)
+        axios.post(`${domain.apiUrl}api/createurl`, urlObject)
             .then(res => {
                 console.log(res.data);
                 if (res.data.error) {

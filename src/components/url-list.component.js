@@ -14,13 +14,11 @@ export default class UrlList extends Component {
 
     constructor(props) {
         super(props);
-       //this.onChangeShortenUrl = this.onChangeShortenUrl.bind(this);
-       //this.loadAllUrls = this.loadAllUrls.bind(this);
-       this.loadAllUrls();
         this.state = {
-            fullurl: '',
             data: []
         }
+        this.loadAllUrls();
+       
     }
 
      /**
@@ -31,25 +29,15 @@ export default class UrlList extends Component {
     loadAllUrls() {
        
         // send date to backent using axios 
-        axios.get(`${domain.domainUrl}api/getallurls`)
+        axios.get(`${domain.apiUrl}api/getallurls`)
             .then(res => {
-                console.log(res);
-                //let resoponseArray = res.data.response;
                 this.setState({
                     data: res.data.response
                 })
-                console.log(this.state);
-
-               
-                if (res.data.error) {
-                   // toast(res.data.error);
-                } else {
-                   // toast('URL created sucssesfully');
-                }
 
             });
          // clear the form   
-         this.setState({ fullurl: '' });
+        // this.setState({ data: '' });
     }
 
 render () {
@@ -58,7 +46,14 @@ render () {
             <ul>
                 {
                     this.state.data.map((item, key) => {
-                        return <li key={key}>{item.fullurl} {item.short}</li>
+                        
+                        return <li className="list" key={key}>
+                           <div><b>URL: </b>{item.fullurl}</div> 
+                            <div><b>Short Url:</b><a href={item.fullurl}> http://short.com/{item.shorturl} </a></div>
+                            <div><b>Country:</b> {item.country}</div> 
+                            <div><b>clicks:</b> {item.clicks}</div> 
+                            <div><b>ipaddress:</b> {item.ipaddress}</div> 
+                            </li>
                     })
                 }
             </ul>
