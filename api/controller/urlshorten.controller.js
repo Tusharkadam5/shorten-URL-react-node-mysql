@@ -48,9 +48,33 @@ exports.createShortUrl = (req, res) => {
     })
   }
 
+  /**
+ * @function getAllUrls get all data from mysql table of urlstable
+ * @since 4 Oct 2020
+ */
+exports.updateClick = (req, res) => {
+  let sql = `SELECT * FROM urlstable WHERE shorturl=${req.body.shorturl}` ;
+  connection.query(sql, (err, results)=> {
+    if(err) throw err;
+    console.log(results);
+    if(results) {
+      let val = results[0].clicks + 1;
+      let updatSql = `UPDATE urlstable SET clicks=${val}`;
+      connection.query(updatSql, (err, child_results)=> {
+        if(err) throw err;
+       // res.send(JSON.stringify({"status": 200, "error": null, "response": child_results}))
+       this.getAllUrls(req, res);
+    });
+    }
+});
+  
+
+  
+}
+
 /**
  * @function makeid It is genrate random 5 char 
- * @since 4 Oct 2020
+ * @since 4 Oct 2020 
  */
   function makeid(length) {
     var result           = '';

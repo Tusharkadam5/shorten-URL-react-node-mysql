@@ -15,6 +15,7 @@ route.post('/createurl', urlshorten.createShortUrl);
 
 route.get('/getallurls', urlshorten.getAllUrls);
 
+route.get('/updateclick/:shortId', urlshorten.updateClick);
 
 
 module.exports = route;

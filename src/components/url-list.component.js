@@ -37,7 +37,7 @@ export default class UrlList extends Component {
 
             });
          // clear the form   
-        // this.setState({ data: '' });
+         this.setState({ data: null});
     }
 
 render () {
